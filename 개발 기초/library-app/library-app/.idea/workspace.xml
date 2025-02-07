@@ -29,6 +29,7 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2sc00oL4XwFrq5i2hrybVUcWwdi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -52,7 +53,13 @@
     "project.structure.last.edited": "프로젝트",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -93,6 +100,8 @@
       <updated>1738739334336</updated>
       <workItem from="1738739335454" duration="1193000" />
       <workItem from="1738740731539" duration="5375000" />
+      <workItem from="1738842379946" duration="311000" />
+      <workItem from="1738930866179" duration="3937000" />
     </task>
     <servers />
   </component>
