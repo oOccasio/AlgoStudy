@@ -6,8 +6,8 @@ import com.group.libraryapp.dto.assignment.response.FruitSellMoney;
 import com.group.libraryapp.dto.calculator.request.CalculatorSumRequest;
 import com.group.libraryapp.dto.calculator.response.CalculateResponse;
 import com.group.libraryapp.dto.calculator.response.DateResponse;
+import com.group.libraryapp.service.assignment.FruitService;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -16,10 +16,11 @@ import java.util.ArrayList;
 @RestController
 public class Assignment2 {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final FruitService fruitService;
 
-    public Assignment2(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+
+    public Assignment2(FruitService fruitService) {
+        this.fruitService = fruitService;
     }
 
     @GetMapping("/api/v1/calc")
@@ -49,24 +50,20 @@ public class Assignment2 {
 
     @PostMapping("/api/v1/fruit")
     public void fruitSave(@RequestBody FruitInformationRequest request) {
-        String sql = "INSERT INTO fruit (name, warehousingDate, price) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, request.getName() , request.getWarehousingDate(), request.getPrice());
 
+        fruitService.fruitSave(request);
     }
 
     @PutMapping("/api/v1/fruit")
     public void fruitUpdate(@RequestBody FruitUpdateRequest request) {
-        String sql = "UPDATE fruit SET sell = 1 WHERE id = ?";
-        jdbcTemplate.update(sql,request.getId());
+
+        fruitService.fruitUpdate(request);
     }
 
     @GetMapping("/api/v1/fruit/stat")
     public FruitSellMoney sellMoney(@RequestParam String name){
-        String sql1 = "SELECT SUM(price) FROM fruit WHERE sell = 1 and name = ?";
-        long salesAmount = jdbcTemplate.queryForObject(sql1, Long.class, name);
-        String sql2 = "SELECT SUM(price) FROM fruit WHERE sell = 0 and name = ?";
-        long notSalesAmount = jdbcTemplate.queryForObject(sql2, Long.class, name);
 
-        return new FruitSellMoney(salesAmount, notSalesAmount);
+        return fruitService.sellMoney(name);
     }
+
 }
