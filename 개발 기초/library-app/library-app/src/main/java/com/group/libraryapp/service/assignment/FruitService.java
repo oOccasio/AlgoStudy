@@ -3,26 +3,28 @@ package com.group.libraryapp.service.assignment;
 import com.group.libraryapp.dto.assignment.request.FruitInformationRequest;
 import com.group.libraryapp.dto.assignment.request.FruitUpdateRequest;
 import com.group.libraryapp.dto.assignment.response.FruitSellMoney;
-import com.group.libraryapp.repository.assignment.FruitMemoryRepository;
+import com.group.libraryapp.repository.assignment.FruitJdbcRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FruitService {
 
-    private FruitMemoryRepository fruitMemoryRepository;
+    private FruitJdbcRepository fruitJdbcRepository;
 
-    public FruitService(FruitMemoryRepository fruitMemoryRepository) {
-        this.fruitMemoryRepository = fruitMemoryRepository;
+    public FruitService(FruitJdbcRepository fruitJdbcRepository) {
+        this.fruitJdbcRepository = fruitJdbcRepository;
     }
 
     public void fruitSave(FruitInformationRequest fruitInformationRequest) {
-        fruitMemoryRepository.fruitSave(fruitInformationRequest);
+        fruitJdbcRepository.fruitSave(fruitInformationRequest);
     }
     public void fruitUpdate(FruitUpdateRequest fruitUpdateRequest) {
-        fruitMemoryRepository.fruitUpdate(fruitUpdateRequest);
+        fruitJdbcRepository.fruitUpdate(fruitUpdateRequest);
     }
 
     public FruitSellMoney sellMoney(String name){
-        return fruitMemoryRepository.sellMoney(name);
+        return fruitJdbcRepository.sellMoney(name);
     }
+
+
 }

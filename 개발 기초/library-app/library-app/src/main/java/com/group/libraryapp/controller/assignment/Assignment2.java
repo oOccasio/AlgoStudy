@@ -1,12 +1,14 @@
 package com.group.libraryapp.controller.assignment;
 
 import com.group.libraryapp.dto.assignment.request.FruitInformationRequest;
+import com.group.libraryapp.dto.assignment.request.FruitSaveRequest;
 import com.group.libraryapp.dto.assignment.request.FruitUpdateRequest;
 import com.group.libraryapp.dto.assignment.response.FruitSellMoney;
 import com.group.libraryapp.dto.calculator.request.CalculatorSumRequest;
 import com.group.libraryapp.dto.calculator.response.CalculateResponse;
 import com.group.libraryapp.dto.calculator.response.DateResponse;
 import com.group.libraryapp.service.assignment.FruitService;
+import com.group.libraryapp.service.assignment.FruitServiceV2;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +18,10 @@ import java.util.ArrayList;
 @RestController
 public class Assignment2 {
 
-    private final FruitService fruitService;
+    private final FruitServiceV2 fruitService;
 
 
-    public Assignment2(FruitService fruitService) {
+    public Assignment2(FruitServiceV2 fruitService) {
         this.fruitService = fruitService;
     }
 
@@ -49,21 +51,17 @@ public class Assignment2 {
     }
 
     @PostMapping("/api/v1/fruit")
-    public void fruitSave(@RequestBody FruitInformationRequest request) {
+    public void fruitSave(@RequestBody FruitSaveRequest request) {
 
-        fruitService.fruitSave(request);
+        fruitService.saveFruit(request);
     }
 
     @PutMapping("/api/v1/fruit")
     public void fruitUpdate(@RequestBody FruitUpdateRequest request) {
 
-        fruitService.fruitUpdate(request);
+        fruitService.updateFruit(request);
     }
 
-    @GetMapping("/api/v1/fruit/stat")
-    public FruitSellMoney sellMoney(@RequestParam String name){
 
-        return fruitService.sellMoney(name);
-    }
 
 }

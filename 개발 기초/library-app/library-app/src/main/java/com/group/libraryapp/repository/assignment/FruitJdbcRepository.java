@@ -7,11 +7,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class FruitMemoryRepository {
+public class FruitJdbcRepository {
 
     private JdbcTemplate jdbcTemplate;
 
-    public FruitMemoryRepository(JdbcTemplate jdbcTemplate) {
+    public FruitJdbcRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
