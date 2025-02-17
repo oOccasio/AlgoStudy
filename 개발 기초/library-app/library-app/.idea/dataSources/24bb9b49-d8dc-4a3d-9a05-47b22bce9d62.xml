@@ -999,7 +999,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="289" parent="1" name="library">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-02-08.09:56:13</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-02-17.15:22:22</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="290" parent="1" name="mysql">
@@ -1046,46 +1046,52 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="300" parent="297" name="name">
       <Position>2</Position>
-      <StoredType>varchar(20)|0s</StoredType>
+      <StoredType>varchar(25)|0s</StoredType>
     </column>
-    <column id="301" parent="297" name="price">
+    <column id="301" parent="297" name="warehousingDate">
       <Position>3</Position>
-      <StoredType>int|0s</StoredType>
-    </column>
-    <column id="302" parent="297" name="stocked_date">
-      <Position>4</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <index id="303" parent="297" name="PRIMARY">
+    <column id="302" parent="297" name="price">
+      <Position>4</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="303" parent="297" name="sell">
+      <DefaultExpression>0</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>tinyint(1)|0s</StoredType>
+    </column>
+    <index id="304" parent="297" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="304" parent="297" name="PRIMARY">
+    <key id="305" parent="297" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="305" parent="298" name="id">
-      <AutoIncrement>1</AutoIncrement>
+    <column id="306" parent="298" name="id">
+      <AutoIncrement>4</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="306" parent="298" name="name">
+    <column id="307" parent="298" name="name">
       <Position>2</Position>
       <StoredType>varchar(25)|0s</StoredType>
     </column>
-    <column id="307" parent="298" name="age">
+    <column id="308" parent="298" name="age">
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <index id="308" parent="298" name="PRIMARY">
+    <index id="309" parent="298" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="309" parent="298" name="PRIMARY">
+    <key id="310" parent="298" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
