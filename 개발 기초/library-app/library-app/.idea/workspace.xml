@@ -51,10 +51,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "프로젝트",
+    "project.structure.last.edited": "SDK",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -65,7 +65,7 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="LibraryAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="ACTIVE_PROFILES" value="dev" />
+      <option name="ACTIVE_PROFILES" value="local" />
       <module name="library-app.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.group.libraryapp.LibraryAppApplication" />
       <extension name="coverage">
@@ -111,7 +111,7 @@
       <workItem from="1739809593075" duration="14288000" />
       <workItem from="1740663982224" duration="1226000" />
       <workItem from="1740665439300" duration="24000" />
-      <workItem from="1740899728057" duration="627000" />
+      <workItem from="1740899728057" duration="2047000" />
     </task>
     <servers />
   </component>

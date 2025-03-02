@@ -14,14 +14,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
     private final UserLoanHistoryRepository userLoanHistoryRepository;
     private final UserRepository userRepository;
 
-   
+    public BookService(BookRepository bookRepository, UserLoanHistoryRepository userLoanHistoryRepository, UserRepository userRepository) {
+        this.bookRepository = bookRepository;
+        this.userLoanHistoryRepository = userLoanHistoryRepository;
+        this.userRepository = userRepository;
+    }
+
     @Transactional
     public void saveBook(SaveBookRequest request){
         bookRepository.save(new Book(request.getName()));
