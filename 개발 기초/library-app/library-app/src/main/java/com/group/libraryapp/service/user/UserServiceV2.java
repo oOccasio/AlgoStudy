@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceV2 {
 
+
     private final UserRepository userRepository;
 
     public UserServiceV2( UserRepository userRepository) {
