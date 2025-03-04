@@ -4,11 +4,10 @@ import chuchu.miniproject.domain.Team;
 import chuchu.miniproject.dto.user.request.RequestSaveTeam;
 import chuchu.miniproject.dto.user.response.ResponseGetTeam;
 import chuchu.miniproject.repository.team.TeamRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,7 @@ public class TeamService {
                                                 requestSaveTeam.getMemberCount()));
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ResponseGetTeam> getTeams() {
         return teamRepository.findAll().stream()
                 .map(ResponseGetTeam ::new)

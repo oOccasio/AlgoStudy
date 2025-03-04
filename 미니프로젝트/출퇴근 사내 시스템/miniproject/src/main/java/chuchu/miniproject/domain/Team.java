@@ -30,7 +30,7 @@ public class Team {
         if(name.length() > 25) {
             throw new IllegalArgumentException("팀 이름은 25자를 초과할 수 없습니다.");
         }
-        if(manager.length() > 25) {
+        if(manager != null && manager.length() > 25) {
             throw new IllegalArgumentException("매너지 이름은 25자를 초과할 수 없습니다.");
         }
 

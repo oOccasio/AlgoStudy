@@ -20,14 +20,14 @@ public class Worker {
     private String name;
 
 
-    @Column(nullable = false, length = 25)
+    @Column(length = 25)
     private String teamName;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate birthday;
 
     @Column(nullable = false)
@@ -38,8 +38,11 @@ public class Worker {
         if(name == null || name.trim().isEmpty()){
             throw new IllegalArgumentException(String.format("유효하지 않은 이름입니다: %s",name));
         }
-        if(teamName == null || teamName.trim().isEmpty()){
-            throw new IllegalArgumentException(String.format("유효하지 않은 팀 이름입니다: %s",teamName));
+        if (name.length() > 25){
+            throw new IllegalArgumentException("이름은 25자를 초과할 수 없습니다.");
+        }
+        if(teamName != null && teamName.length() > 25){
+            throw new IllegalArgumentException("팀 이름은 25자를 초과할 수 없습니다.");
         }
         if(role == null){
             throw new IllegalArgumentException("유효하지 않은 role 입니다.");

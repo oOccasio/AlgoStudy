@@ -4,6 +4,7 @@ import chuchu.miniproject.domain.Team;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 @NoArgsConstructor
 @Getter
 public class ResponseGetTeam {
