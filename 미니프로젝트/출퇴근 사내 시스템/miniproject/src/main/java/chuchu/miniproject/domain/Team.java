@@ -1,19 +1,24 @@
 package chuchu.miniproject.domain;
 
+import chuchu.miniproject.domain.worker.Worker;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Entity
+@Setter
 @NoArgsConstructor
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 25)
+    @Column(nullable = false, length = 25, unique = true)
     private String name;
 
     @Column(length = 25)
@@ -22,10 +27,15 @@ public class Team {
     @Column
     private Integer memberCount;
 
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Worker> workers = new ArrayList<>();
+
+
     public Team(Builder builder) {
         this.name = builder.name;
         this.manager = builder.manager;
         this.memberCount = builder.memberCount;
+        this.workers.addAll(builder.workers);
     }
 
     public static Builder builder(){
@@ -37,6 +47,7 @@ public class Team {
         private String name;
         private String manager;
         private Integer memberCount;
+        private List<Worker> workers = new ArrayList<>();
 
         public Builder name(String name){
             this.name = name;
@@ -48,8 +59,14 @@ public class Team {
             return this;
         }
 
-        public Builder memberCount(Integer memberCount){
-            this.memberCount = (memberCount != null) ? memberCount : 0;
+        public Builder memberCount(List<Worker> workers){
+
+            this.memberCount = (workers.isEmpty()) ? 0 : workers.size();
+            return this;
+        }
+
+        public Builder workers(List<Worker> workers){
+            this.workers = new ArrayList<>(workers);
             return this;
         }
 

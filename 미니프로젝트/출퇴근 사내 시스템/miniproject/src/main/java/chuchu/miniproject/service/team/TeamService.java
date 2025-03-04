@@ -23,7 +23,6 @@ public class TeamService {
     public void saveTeam (RequestSaveTeam requestSaveTeam) {
         String name = requestSaveTeam.getName();
         String manager = requestSaveTeam.getManager();
-        Integer memberCount = requestSaveTeam.getMemberCount();
 
         if(name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException(String.format("유효하지 않은 이름입니다: %s", name));
@@ -31,6 +30,11 @@ public class TeamService {
         if(name.length() > 25){
             throw new IllegalArgumentException("팀 이름은 25자를 초과할 수 없습니다.");
         }
+
+        teamRepository.findByName(name)
+                .ifPresent(team -> {
+                    throw new IllegalArgumentException("이미 존재하는 팀이름입니다.");
+                });
 
         if(manager != null && manager.length() > 25) {
             throw new IllegalArgumentException("매니저 이름은 25자를 초과할 수 없습니다.");
@@ -40,7 +44,7 @@ public class TeamService {
         Team team = Team.builder()
                 .name(name)
                 .manager(manager)
-                .memberCount(memberCount)
+                .memberCount(new ArrayList<>())
                 .build();
 
         teamRepository.save(team);

@@ -1,10 +1,8 @@
 package chuchu.miniproject.dto.worker.response;
 
 import chuchu.miniproject.domain.Role;
-import chuchu.miniproject.domain.Worker;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 

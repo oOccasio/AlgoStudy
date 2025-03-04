@@ -9,6 +9,5 @@ public class RequestSaveTeam {
 
     private final String name;
     private final String manager;
-    private final int memberCount;
 
 }

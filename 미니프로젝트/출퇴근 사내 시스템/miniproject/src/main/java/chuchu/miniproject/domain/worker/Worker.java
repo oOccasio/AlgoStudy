@@ -1,5 +1,7 @@
-package chuchu.miniproject.domain;
+package chuchu.miniproject.domain.worker;
 
+import chuchu.miniproject.domain.Role;
+import chuchu.miniproject.domain.Team;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 public class Worker {
     @Id
@@ -33,12 +36,17 @@ public class Worker {
     @Column(nullable = false)
     private LocalDate workStartDate;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
+
     @Builder
-    public Worker(String name, String teamName, Role role, LocalDate birthday, LocalDate workStartDate) {
+    public Worker(String name, String teamName, Role role, LocalDate birthday, LocalDate workStartDate, Team team) {
         this.name = name;
         this.teamName = teamName;
         this.role = role;
         this.birthday = birthday;
         this.workStartDate = workStartDate;
+        this.team = team;
     }
 }
