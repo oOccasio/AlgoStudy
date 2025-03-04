@@ -1,6 +1,7 @@
 package chuchu.miniproject.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,6 @@ import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
-@Setter
 @Entity
 public class Worker {
     @Id
@@ -33,38 +33,12 @@ public class Worker {
     @Column(nullable = false)
     private LocalDate workStartDate;
 
-
+    @Builder
     public Worker(String name, String teamName, Role role, LocalDate birthday, LocalDate workStartDate) {
-        if(name == null || name.trim().isEmpty()){
-            throw new IllegalArgumentException(String.format("유효하지 않은 이름입니다: %s",name));
-        }
-        if (name.length() > 25){
-            throw new IllegalArgumentException("이름은 25자를 초과할 수 없습니다.");
-        }
-        if(teamName != null && teamName.length() > 25){
-            throw new IllegalArgumentException("팀 이름은 25자를 초과할 수 없습니다.");
-        }
-        if(role == null){
-            throw new IllegalArgumentException("유효하지 않은 role 입니다.");
-        }
-        if(birthday.isAfter(LocalDate.now())){
-            throw new IllegalArgumentException("생년월일은 미래날짜가 될 수 없습니다.");
-        }
-        if(workStartDate == null){
-            throw new IllegalArgumentException("유효하지 않은 입사일 입니다.");
-        }
-        if(workStartDate.isAfter(LocalDate.now())){
-            throw new IllegalArgumentException("입사일은 미래날짜가 될 수 없습니다.");
-        }
-        if(birthday.isBefore(LocalDate.of(1900, 1, 1))) {
-            throw new IllegalArgumentException("생년월일이 너무 오래되었습니다.");
-        }
         this.name = name;
         this.teamName = teamName;
         this.role = role;
         this.birthday = birthday;
         this.workStartDate = workStartDate;
     }
-
-
 }

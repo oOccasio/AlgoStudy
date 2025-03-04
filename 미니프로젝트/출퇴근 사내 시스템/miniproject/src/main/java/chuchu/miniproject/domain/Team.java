@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @Entity
 @NoArgsConstructor
 public class Team {
@@ -23,22 +22,40 @@ public class Team {
     @Column
     private Integer memberCount;
 
-    public Team(String name, String manager, Integer memberCount) {
-        if(name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException(String.format("유효하지 않은 이름입니다: %s", name));
-        }
-        if(name.length() > 25) {
-            throw new IllegalArgumentException("팀 이름은 25자를 초과할 수 없습니다.");
-        }
-        if(manager != null && manager.length() > 25) {
-            throw new IllegalArgumentException("매너지 이름은 25자를 초과할 수 없습니다.");
-        }
+    public Team(Builder builder) {
+        this.name = builder.name;
+        this.manager = builder.manager;
+        this.memberCount = builder.memberCount;
+    }
 
-        this.name = name;
-        this.manager = manager;
-        this.memberCount = (memberCount == null) ? 0 : memberCount;
+    public static Builder builder(){
+        return new Builder();
     }
 
 
+    public static class Builder{
+        private String name;
+        private String manager;
+        private Integer memberCount;
+
+        public Builder name(String name){
+            this.name = name;
+            return this;
+        }
+
+        public Builder manager(String manager){
+            this.manager = manager;
+            return this;
+        }
+
+        public Builder memberCount(Integer memberCount){
+            this.memberCount = (memberCount != null) ? memberCount : 0;
+            return this;
+        }
+
+        public Team build(){
+            return new Team(this);
+        }
+    }
 
 }
