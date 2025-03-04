@@ -1,8 +1,8 @@
 package chuchu.miniproject.service.team;
 
 import chuchu.miniproject.domain.Team;
-import chuchu.miniproject.dto.user.request.RequestSaveTeam;
-import chuchu.miniproject.dto.user.response.ResponseGetTeam;
+import chuchu.miniproject.dto.team.request.RequestSaveTeam;
+import chuchu.miniproject.dto.team.response.ResponseGetTeam;
 import chuchu.miniproject.repository.team.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

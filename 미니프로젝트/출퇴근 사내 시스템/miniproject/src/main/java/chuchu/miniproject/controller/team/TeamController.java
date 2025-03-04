@@ -1,10 +1,9 @@
 package chuchu.miniproject.controller.team;
 
-import chuchu.miniproject.dto.user.request.RequestSaveTeam;
-import chuchu.miniproject.dto.user.response.ResponseGetTeam;
+import chuchu.miniproject.dto.team.request.RequestSaveTeam;
+import chuchu.miniproject.dto.team.response.ResponseGetTeam;
 import chuchu.miniproject.service.team.TeamService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

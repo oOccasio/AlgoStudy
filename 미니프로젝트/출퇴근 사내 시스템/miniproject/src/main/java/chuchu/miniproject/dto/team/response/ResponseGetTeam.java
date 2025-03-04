@@ -1,4 +1,4 @@
-package chuchu.miniproject.dto.user.response;
+package chuchu.miniproject.dto.team.response;
 
 import chuchu.miniproject.domain.Team;
 import lombok.Getter;

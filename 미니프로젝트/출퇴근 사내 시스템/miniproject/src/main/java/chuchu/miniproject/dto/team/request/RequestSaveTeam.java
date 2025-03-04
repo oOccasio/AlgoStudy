@@ -1,4 +1,4 @@
-package chuchu.miniproject.dto.user.request;
+package chuchu.miniproject.dto.team.request;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
