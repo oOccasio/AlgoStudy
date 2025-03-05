@@ -4,14 +4,12 @@ import chuchu.miniproject.domain.worker.Worker;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Entity
-@Setter
 @NoArgsConstructor
 public class Team {
     @Id
@@ -29,6 +27,7 @@ public class Team {
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Worker> workers = new ArrayList<>();
+
 
 
     public Team(Builder builder) {
@@ -75,4 +74,16 @@ public class Team {
         }
     }
 
+    public void updateMemberCount(){
+        this.memberCount = workers.size();
+    }
+
+    public void addWorker(Worker worker){
+        this.workers.add(worker);
+        updateMemberCount();
+    }
+
+    public void updateManager(String manager){
+        this.manager = manager;
+    }
 }

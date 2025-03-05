@@ -6,13 +6,13 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
-@Setter
 @Entity
 public class Worker {
     @Id
@@ -40,13 +40,21 @@ public class Worker {
     @JoinColumn(name = "team_id")
     private Team team;
 
+    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL)
+    private final List<WorkList> workLists = new ArrayList<>();
+
     @Builder
-    public Worker(String name, String teamName, Role role, LocalDate birthday, LocalDate workStartDate, Team team) {
+    public Worker(String name, String teamName, Role role, LocalDate birthday,
+                  LocalDate workStartDate, Team team) {
         this.name = name;
         this.teamName = teamName;
         this.role = role;
         this.birthday = birthday;
         this.workStartDate = workStartDate;
         this.team = team;
+    }
+
+    public void goWork (WorkList workList){
+        this.workLists.add(workList);
     }
 }
