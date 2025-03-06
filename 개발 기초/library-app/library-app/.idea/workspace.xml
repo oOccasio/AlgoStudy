@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98b9671d-414c-424e-b268-8dbb9ed728df" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../미니프로젝트/출퇴근 사내 시스템/miniproject/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../미니프로젝트/출퇴근 사내 시스템/miniproject/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../미니프로젝트/출퇴근 사내 시스템/miniproject/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../미니프로젝트/출퇴근 사내 시스템/miniproject/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="98b9671d-414c-424e-b268-8dbb9ed728df" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +45,7 @@
     &quot;Spring Boot.LibraryAppApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/wpsxk/OneDrive/바탕 화면/Study/미니프로젝트/출퇴근 사내 시스템/miniproject&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/wpsxk/OneDrive/바탕 화면/Study/개발 기초/library-app/library-app&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -117,6 +114,15 @@
       <workItem from="1740899728057" duration="3633000" />
       <workItem from="1740980800801" duration="17000" />
       <workItem from="1741011345893" duration="6642000" />
+      <workItem from="1741047600911" duration="33000" />
+      <workItem from="1741047647389" duration="8000" />
+      <workItem from="1741050977473" duration="20000" />
+      <workItem from="1741064784538" duration="2294000" />
+      <workItem from="1741069007967" duration="636000" />
+      <workItem from="1741071574311" duration="21000" />
+      <workItem from="1741193188919" duration="691000" />
+      <workItem from="1741219667208" duration="30000" />
+      <workItem from="1741220322943" duration="250000" />
     </task>
     <servers />
   </component>
