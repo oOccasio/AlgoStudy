@@ -6,6 +6,6 @@ public record ResponseGetWorkList(
 
         List<ResponseListGetWorkList> detail,
 
-        Integer sum
+        Long sum
 ) {
 }

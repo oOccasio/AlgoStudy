@@ -56,7 +56,12 @@ public class Worker {
 
     public void goWork (WorkList workList)
     {
+
         this.workLists.add(workList);
 
     }
+
+
+
+
 }

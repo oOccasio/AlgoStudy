@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public record ResponseListGetWorkList(
         LocalDate date,
 
-        Integer workingMinute
+        Long workingMinute
+
 ) {
 }

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -97,15 +98,20 @@ public class WorkerService {
 
     @Transactional
     public void goWorker(RequestGoWorker requestGoWorker){
+
+        LocalTime goTime = requestGoWorker.goTime();
         Long currentId = requestGoWorker.workerId();
         Worker currentWorker = workerRepository.findById(currentId)
                 .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 Id 입니다."));
 
         LocalDate workDate = requestGoWorker.workDate();
 
-        Integer workingMinute = requestGoWorker.workingMinutes();
+        if(workListRepository.findByWorkerIdAndWorkDate(currentId, workDate).isPresent())
+            throw new IllegalArgumentException("이미 출근한 직원입니다.");
 
-        if(workDate == null){
+
+
+            if(workDate == null){
             throw new IllegalArgumentException("유효한 날짜를 입력해주세요.");
         }
 
@@ -117,15 +123,18 @@ public class WorkerService {
             throw new IllegalArgumentException("입사일 이전의 날짜는 입력할 수 없습니다.");
         }
 
-        if(workingMinute == null || workingMinute <= 0) {
-            throw new IllegalArgumentException("유효한 시간을 입력해주세요");
+        if(goTime == null){
+            throw new IllegalArgumentException("유효한 출근시간을 입력해주세요.");
         }
 
+
+
+
         WorkList workList = WorkList.builder()
-                .work(true)
                 .worker(currentWorker)
                 .workDate(workDate)
-                .workingMinutes(workingMinute).build();
+                .goTime(goTime)
+                .build();
 
         currentWorker.goWork(workList);
 
@@ -139,16 +148,18 @@ public class WorkerService {
                 .findByWorkerIdAndWorkDate(requestLeaveWorker.workerId(), requestLeaveWorker.workDate())
                 .orElseThrow(() -> new EntityNotFoundException("출근 리스트에 없는 직원입니다."));
 
-        if(!currentWorkList.isWork())
-            throw new IllegalArgumentException("출근하지 않은 직원입니다.");
+        if(requestLeaveWorker.endTime() == null)
+            throw new IllegalArgumentException("유효한 퇴근 시간을 입력해주세요.");
 
-        currentWorkList.isNotWorking();
+        currentWorkList.leaveWork(requestLeaveWorker.endTime());
+        currentWorkList.worKingMinutes(currentWorkList);
 
     }
 
 
     @Transactional(readOnly = true)
     public ResponseGetWorkList getWorkList(Long workerId, YearMonth yearMonth){
+
 
 
         List<WorkList> workLists = workListRepository.findAll().stream()
@@ -163,13 +174,15 @@ public class WorkerService {
 
 
 
-        Integer sum = workLists.stream().mapToInt(WorkList::getWorkingMinutes).sum();
+        Long sum = workLists.stream().mapToLong(WorkList::getWorkingMinutes).sum();
+
         List <ResponseListGetWorkList> responseListGetWorkLists = workLists.stream()
                 .map(workList -> new ResponseListGetWorkList(workList.getWorkDate(), workList.getWorkingMinutes()))
                 .toList();
 
 
         return new ResponseGetWorkList(responseListGetWorkLists, sum);
+
 
     }
 

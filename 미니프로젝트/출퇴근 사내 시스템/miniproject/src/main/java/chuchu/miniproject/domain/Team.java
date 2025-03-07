@@ -83,7 +83,8 @@ public class Team {
         updateMemberCount();
     }
 
-    public void updateManager(String manager){
+    public void updateManager(String manager)
+    {
         this.manager = manager;
     }
 }

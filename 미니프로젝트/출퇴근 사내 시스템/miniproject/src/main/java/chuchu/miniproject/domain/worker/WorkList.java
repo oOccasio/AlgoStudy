@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @Entity
@@ -20,11 +22,14 @@ public class WorkList {
     @Column(nullable = false)
     private LocalDate workDate;
 
-    @Column(nullable = false)
-    private Integer workingMinutes;
+    @Column
+    private LocalTime goTime;
 
-    @Column(nullable = false)
-    private boolean work;
+    @Column
+    private LocalTime endTime;
+
+    @Column(nullable = true)
+    private Long workingMinutes;
 
     @ManyToOne
     @JoinColumn(name = "worker_id")
@@ -32,15 +37,23 @@ public class WorkList {
 
 
     @Builder
-    public WorkList(LocalDate workDate, Integer workingMinutes, boolean work, Worker worker) {
+    public WorkList(LocalDate workDate, Long workingMinutes, Worker worker, LocalTime goTime, LocalTime endTime) {
         this.workDate = workDate;
         this.workingMinutes = workingMinutes;
-        this.work = work;
         this.worker = worker;
+        this.goTime = goTime;
+        this.endTime = endTime;
     }
 
-    public void isNotWorking()
-    {
-        this.work = false;
+
+
+
+    public void leaveWork(LocalTime endTime){
+        this.endTime = endTime;
     }
+
+    public void worKingMinutes(WorkList workList){
+        this.workingMinutes = Duration.between(workList.getGoTime(), workList.getEndTime()).toMinutes();
+    }
+
 }
