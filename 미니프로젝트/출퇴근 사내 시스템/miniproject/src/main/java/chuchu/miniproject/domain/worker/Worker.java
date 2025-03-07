@@ -54,7 +54,9 @@ public class Worker {
         this.team = team;
     }
 
-    public void goWork (WorkList workList){
+    public void goWork (WorkList workList)
+    {
         this.workLists.add(workList);
+
     }
 }

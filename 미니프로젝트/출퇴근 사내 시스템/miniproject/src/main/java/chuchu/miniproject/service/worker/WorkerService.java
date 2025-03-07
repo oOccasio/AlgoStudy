@@ -7,7 +7,9 @@ import chuchu.miniproject.domain.worker.Worker;
 import chuchu.miniproject.dto.worker.request.RequestGoWorker;
 import chuchu.miniproject.dto.worker.request.RequestLeaveWorker;
 import chuchu.miniproject.dto.worker.request.RequestSaveWorker;
+import chuchu.miniproject.dto.worker.response.ResponseGetWorkList;
 import chuchu.miniproject.dto.worker.response.ResponseGetWorker;
+import chuchu.miniproject.dto.worker.response.ResponseListGetWorkList;
 import chuchu.miniproject.repository.team.TeamRepository;
 import chuchu.miniproject.repository.worker.WorkListRepository;
 import chuchu.miniproject.repository.worker.WorkerRepository;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -144,5 +147,30 @@ public class WorkerService {
     }
 
 
+    @Transactional(readOnly = true)
+    public ResponseGetWorkList getWorkList(Long workerId, YearMonth yearMonth){
+
+
+        List<WorkList> workLists = workListRepository.findAll().stream()
+                        .filter(workList -> workList.getWorker().getId().equals(workerId))
+                        .filter(workList -> YearMonth.from(workList.getWorkDate()).equals(yearMonth))
+                        .toList();
+
+
+
+        if(workLists.isEmpty())
+            throw new IllegalArgumentException("존재하지 않는 직원 Id 입니다.");
+
+
+
+        Integer sum = workLists.stream().mapToInt(WorkList::getWorkingMinutes).sum();
+        List <ResponseListGetWorkList> responseListGetWorkLists = workLists.stream()
+                .map(workList -> new ResponseListGetWorkList(workList.getWorkDate(), workList.getWorkingMinutes()))
+                .toList();
+
+
+        return new ResponseGetWorkList(responseListGetWorkLists, sum);
+
+    }
 
 }

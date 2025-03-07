@@ -3,11 +3,15 @@ package chuchu.miniproject.controller.worker;
 import chuchu.miniproject.dto.worker.request.RequestGoWorker;
 import chuchu.miniproject.dto.worker.request.RequestLeaveWorker;
 import chuchu.miniproject.dto.worker.request.RequestSaveWorker;
+import chuchu.miniproject.dto.worker.response.ResponseGetWorkList;
 import chuchu.miniproject.dto.worker.response.ResponseGetWorker;
 import chuchu.miniproject.service.worker.WorkerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.List;
 
 @RestController
@@ -30,7 +34,8 @@ public class WorkerController {
 
 
     @PostMapping("/worker/go")
-    public void goWorker (@RequestBody RequestGoWorker requestGoWorker) {
+    public void goWorker (@RequestBody RequestGoWorker requestGoWorker)
+    {
         workerService.goWorker(requestGoWorker);
     }
 
@@ -39,5 +44,13 @@ public class WorkerController {
         workerService.leaveWorker(requestLeaveWorker);
     }
 
+    @GetMapping("/worker/workList")
+    public ResponseGetWorkList getWorkList(@RequestParam Long workerId,
+                                           @RequestParam @DateTimeFormat
+                                                   (iso = DateTimeFormat.ISO.DATE_TIME)YearMonth yearMonth) {
+
+        return workerService.getWorkList(workerId, yearMonth);
+
+    }
 
 }
